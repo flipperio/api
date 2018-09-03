@@ -1,10 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const getPosts = require('./getPosts.js');
+require('../Models/Post.js');
 
-module.exports = function controller(app, { path='/api' } = {}) {
+module.exports = function controller(app, { path = '/api' } = {}) {
 	const router = express.Router();
 
-	if(process.env.NODE_ENV !== 'production') {
+	if (process.env.NODE_ENV !== 'production') {
 		router.use(cors());
 		router.options('*', cors());
 	}
@@ -13,5 +15,7 @@ module.exports = function controller(app, { path='/api' } = {}) {
 		res.status(200).send('pong');
 	});
 
-	app.use(path, [router]);
-}
+	getPosts(router);
+
+	app.use(path, router);
+};
