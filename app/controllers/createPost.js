@@ -36,15 +36,12 @@ module.exports = function(app, { path = '/posts' } = {}) {
 			});
 		}
 
-		Post.create({ title, body }, function(err, createdPost) {
+		Post.create({ title, body }, function(err, doc) {
 			if (err) {
-				return res.status(500).json({
-					error: true,
-					message: 'An internal error has occured'
-				});
+				return res.status(500).json({ error: true, message: 'An internal error has occured' });
 			}
 
-			return res.status(200).json(createdPost.toObject());
+			return res.status(200).json(doc.toObject());
 		});
 	});
 
