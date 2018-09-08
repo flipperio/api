@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const getPosts = require('./getPosts.js');
+const createPost = require('./createPost.js');
 require('../Models/Post.js');
 
 module.exports = function controller(app, { path = '/api' } = {}) {
@@ -16,6 +17,7 @@ module.exports = function controller(app, { path = '/api' } = {}) {
 	});
 
 	getPosts(router);
+	createPost(router);
 
 	app.use(path, router);
 };
