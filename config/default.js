@@ -9,5 +9,9 @@ module.exports = {
 			min: 10,
 			max: 260
 		}
+	},
+	query: {
+		defaultPageSize: 10,
+		maxPageSize: 10
 	}
 };
